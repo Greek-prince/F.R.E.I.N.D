@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FRIENDS - Characters</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-900 text-white">
+    <div class="p-8">
+        <h1 class="text-3xl mb-6">Character Wikipedia</h1>
+        <form action="/characters" method="post" class="mb-6">
+            <input type="text" name="name" placeholder="Name" class="px-3 py-2 bg-zinc-800 text-white">
+            <input type="text" name="image" placeholder="Image URL" class="px-3 py-2 bg-zinc-800 text-white">
+            <textarea name="bio" placeholder="Bio" class="px-3 py-2 bg-zinc-800 text-white"></textarea>
+            <button type="submit" class="px-4 py-2 bg-blue-500">Add Character</button>
+        </form>
+        <div>
+            <% characters.forEach(character => { %>
+                <div>
+                    <h2><%= character.name %></h2>
+                    <img src="<%= character.image %>" alt="<%= character.name %>">
+                    <p><%= character.bio %></p>
+                    <a href="/characters/delete/<%= character._id %>" class="text-red-500">Delete</a>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FRIENDS - Forum</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-900 text-white">
+    <div class="p-8">
+        <h1 class="text-3xl mb-6">Discussion Forum</h1>
+        <form action="/forum" method="post" class="mb-6">
+            <input type="text" name="title" placeholder="Title" class="px-3 py-2 bg-zinc-800 text-white">
+            <textarea name="content" placeholder="Content" class="px-3 py-2 bg-zinc-800 text-white"></textarea>
+            <input type="text" name="author" placeholder="Author" class="px-3 py-2 bg-zinc-800 text-white">
+            <button type="submit" class="px-4 py-2 bg-blue-500">Post Thread</button>
+        </form>
+        <div>
+            <% threads.forEach(thread => { %>
+                <div>
+                    <h2><%= thread.title %></h2>
+                    <p><%= thread.content %></p>
+                    <p>By: <%= thread.author %></p>
+                    <form action="/forum/comment/<%= thread._id %>" method="post">
+                        <input type="text" name="author" placeholder="Your Name" class="px-3 py-2 bg-zinc-800 text-white">
+                        <textarea name="content" placeholder="Your Comment" class="px-3 py-2 bg-zinc-800 text-white"></textarea>
+                        <button type="submit" class="px-4 py-2 bg-blue-500">Comment</button>
+                    </form>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</body>
+</html>

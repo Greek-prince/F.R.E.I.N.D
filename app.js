@@ -1,32 +1,31 @@
-const express=require('express');
-const app=express();
-const path=require('Path');
-const usermodel=require('./models/user');
-app.set("view engine","ejs");
+const express = require('express');
+const app = express();
+const path = require('path');
+const connectDB = require('./config/db');
+const userRoutes = require('./routes/userRoutes');
+
+// Connect to database
+connectDB();
+
+app.set('view engine', 'ejs');
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-app.use(express.static(path.join(__dirname,'public')));
-app.get('/',function(req,res){
-    res.render("index");
-})
-app.get('/read',async function(req,res){
-    let users=await usermodel.find();
-    res.render("read",{users});
-})
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/delete/:id',async function(req,res){
-    let users=await usermodel.findOneAndDelete({_id:req.params.id});
-    res.redirect("/read");
-})
-app.post('/create',async function(req,res){
-    let {name,image,passion}=req.body;
+// Use user routes
+app.use('/', userRoutes);
 
-    let createdUser=await usermodel.create({
-        name,
-        image,
-        passion
-      })
-      res.redirect("/read");
-    
-})
-app.listen(3000)
+// 404 handler
+app.use((req, res, next) => {
+    res.status(404).render('404', { url: req.originalUrl });
+});
+
+// Error handler
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
+
+app.listen(3000, () => {
+    console.log('Server running on http://localhost:3000');
+});

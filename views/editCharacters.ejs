@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Character</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-900 text-white">
+    <% layout('layout') -%>
+    <section style="margin-top:2em;">
+        <h1 style="font-size:2rem; color:var(--primary); font-weight:600; margin-bottom:1em;">Edit Character</h1>
+        <form action="/characters/edit/<%= character._id %>" method="POST" style="display:flex; flex-direction:column; gap:1em; max-width:400px;">
+            <input type="text" id="name" name="name" value="<%= character.name %>" required placeholder="Name" class="px-3 py-2 bg-zinc-800 text-white rounded">
+            <input type="text" id="image" name="image" value="<%= character.image %>" placeholder="Image URL" class="px-3 py-2 bg-zinc-800 text-white rounded">
+            <textarea id="description" name="description" required placeholder="Description" class="px-3 py-2 bg-zinc-800 text-white rounded"><%= character.description %></textarea>
+            <input type="text" id="keyEpisodes" name="keyEpisodes" value="<%= character.keyEpisodes.join(',') %>" placeholder="Key Episodes (comma-separated)" class="px-3 py-2 bg-zinc-800 text-white rounded">
+            <button type="submit" class="px-4 py-2 bg-blue-500 rounded">Update</button>
+        </form>
+    </section>
+</body>
+</html>

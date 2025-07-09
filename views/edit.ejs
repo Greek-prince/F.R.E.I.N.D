@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background:#18181b;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Character</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
+<body class="fade-in" style="background:#18181b;">
     <div class="w-full h-full bg-zinc-900 p-9 text-white ">
         <div class="nav mb-5 text-blue-400">
-            <a href="/read">Wikipedia -></a>
+            <a href="/read"><i class="fa-solid fa-arrow-left"></i> Wikipedia</a>
         </div>
-        <h1 class="text-3xl tracking-tighter text-zinc-500 mb-3 ">Edit Character</h1>
-        <form action="/edit/<%= user._id %>" method="post">
+        <h1 class="text-3xl tracking-tighter text-zinc-500 mb-3 "><i class="fa-solid fa-user-pen"></i> Edit Character</h1>
+        <form action="/edit/<%= user._id %>" method="post" class="pop-in">
             <input class="px-5 py-2 border-2 border-zinc-700 mt-3 rounded-lg bg-transparent text-white" type="text" name="name" value="<%= user.name %>" placeholder="Name" required>
             <input class="px-5 py-2 border-2 border-zinc-700 rounded-lg bg-transparent ml-2 text-white" type="text" name="passion" value="<%= user.passion %>" placeholder="Passion" required>
             <input class="px-5 py-2 border-2 border-zinc-700 rounded-lg bg-transparent ml-2 text-white" type="text" name="image" value="<%= user.image %>" placeholder="Image url" required>
-            <input class="px-5 py-2 bg-blue-500 border-2 border-zinc-700 rounded-lg ml-20 text-white" type="submit" value="Update">
+            <button class="px-5 py-2 bg-blue-500 border-2 border-zinc-700 rounded-lg ml-20 text-white" type="submit">
+                <i class="fa-solid fa-floppy-disk" style="font-size:1em; margin-right:0.5em;"></i>Update
+            </button>
         </form>
     </div>
 </body>

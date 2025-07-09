@@ -1,42 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background:#18181b;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-  </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
+<body class="fade-in" style="background:#18181b;">
     <div class="w-full h-full bg-zinc-900 p-9 text-white ">
-        <a  class = "text-blue-400 "href="/">Back To Home Page</a>
-        
-            <h1 style="font-size:2rem; color:var(--primary); font-weight:600; margin-bottom:1em;">All Characters</h1>
-    <div style="display:flex; flex-wrap:wrap; gap:2em;">
-        <% if (users.length > 0) { %>
-            <% users.forEach(function(user) { %>
-                <div class="card" style="width:260px;">
-                    <div style="width:100%; height:180px; background:var(--secondary); border-radius:var(--radius); overflow:hidden; display:flex; align-items:center; justify-content:center;">
-                        <img src="<%= user.image %>" alt="" style="max-width:100%; max-height:100%; object-fit:cover; border-radius:var(--radius);">
+        <a class="text-blue-400" href="/">
+            <i class="fa-solid fa-arrow-left"></i> Back To Home Page
+        </a>
+        <div style="height: 1.2em;"></div>
+        <h1 style="font-size:2rem; color:var(--primary); font-weight:600; margin-bottom:1em;">
+            <i class="fa-solid fa-users"></i> All Characters
+        </h1>
+        <div style="display:flex; flex-wrap:wrap; gap:2em;">
+            <% if (users.length > 0) { %>
+                <% users.forEach(function(user) { %>
+                    <div class="card pop-in" style="width:260px; background:#18181b; border-radius:var(--radius); box-shadow:0 2px 8px rgba(0,0,0,0.18); color:#f3f4f6; border:1px solid #27272a;">
+                        <div style="width:100%; height:180px; background:#27272a; border-radius:var(--radius); overflow:hidden; display:flex; align-items:center; justify-content:center;">
+                            <img src="<%= user.image %>" alt="" style="max-width:100%; max-height:100%; object-fit:cover; border-radius:var(--radius);">
+                        </div>
+                        <h3 style="margin-top:1em; font-size:1.2rem; color:#f3f4f6; font-weight:600;">
+                            <i class="fa-solid fa-user" style="font-size:1em; margin-right:0.4em;"></i><%= user.name %>
+                        </h3>
+                        <div style="color:#818cf8; font-size:1em; margin-bottom:0.5em;">
+                            <i class="fa-solid fa-heart" style="font-size:1em; margin-right:0.4em;"></i>Passion: <%= user.passion %>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; gap:0.5em;">
+                            <a href="/edit/<%= user._id %>" style="background:transparent; border:none; color:#6366f1; padding:0.5em 0.7em; border-radius:50%; cursor:pointer; transition:background 0.15s; font-size:1.2em;">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a href="/delete/<%= user._id %>" style="background:transparent; border:none; color:#e11d48; padding:0.5em 0.7em; border-radius:50%; cursor:pointer; transition:background 0.15s; font-size:1.2em;">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
                     </div>
-                    <h3 style="margin-top:1em; font-size:1.2rem; color:var(--foreground); font-weight:600;"><%= user.name %></h3>
-                    <div style="color:var(--accent); font-size:1em; margin-bottom:0.5em;">Passion: <%= user.passion %></div>
-                    <div style="display:flex; justify-content:space-between;">
-                        <a href="/edit/<%= user._id %>" class="btn" style="background:var(--accent);">Edit</a>
-                        <a href="/delete/<%= user._id %>" class="btn" style="background:#e11d48;">Delete</a>
-                    </div>
-                </div>
-            <% }) %>
-        <% } else { %>
-            <div style="color:#888;">No characters found.</div>
-        <% } %>
+                <% }) %>
+            <% } else { %>
+                <div style="color:#888;"><i class="fa-solid fa-circle-info" style="font-size:1em; margin-right:0.4em;"></i>No characters found.</div>
+            <% } %>
+        </div>
     </div>
-           
-
-        
-       
-    </div>
-
 </body>
 </html>
